@@ -30,7 +30,7 @@ return new class extends Migration
             $table->boolean('isVerify')->default(0);
             $table->rememberToken();
             $table->integer('balance')->default(0);
-            $table->string('position');
+            $table->string('position')->nullable();
             $table->timestamp('suspended_at')->nullable();
             $table->timestamps();
         });

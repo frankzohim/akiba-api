@@ -21,6 +21,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         Passport::enablePasswordGrant();
+         $this->registerPolicies();
+        Passport::tokensCan([
+            'customer' => 'User',
+            'vendor' => 'User',
+            'admin' => 'User',
+            'shipper' => 'User',
+        ]);
     }
 }
