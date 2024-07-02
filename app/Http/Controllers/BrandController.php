@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Resources\BrandResource;
 
 class BrandController extends Controller
 {
@@ -13,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return BrandResource::collection(Brand::all());
     }
 
     /**
@@ -29,7 +30,17 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+        //Validate data
+
+        $validatedData = $request->validated();
+
+        //Validation passed, processing with storage
+        $brand = Brand::create([
+            'name' => $request->name,
+            'state' => $request->state
+        ]);
+
+        return new BrandResource($brand);
     }
 
     /**
@@ -37,7 +48,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return new BrandResource($brand);
     }
 
     /**
@@ -53,7 +64,17 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        //Validate data
+
+        $validatedData = $request->validated();
+        //Validation passed, processing with update
+        $brand->update([
+            'name' => $request->name,
+            'state' => $request->state
+        ]) ;
+
+        return new BrandResource($brand);
+
     }
 
     /**
@@ -61,6 +82,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return response(null, 204);
     }
 }

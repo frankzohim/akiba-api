@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\CreateUserController;
 use App\Http\Controllers\Api\User\CurrentUserController;
+use App\Http\Controllers\Api\User\LogoutController;
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,9 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
     // });
     Route::get('/currentUser',[CurrentUserController::class,'currentUser']);
     Route::post('/logout',[LogoutController::class,'logout']);
+
+    //Brand resource
+     Route::apiResource('/brands', BrandController::class);
 });
 
 

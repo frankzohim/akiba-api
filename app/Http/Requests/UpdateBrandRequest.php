@@ -11,7 +11,7 @@ class UpdateBrandRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+             'id' => ['required', 'exists:App\Models\Brand,id'],
+             'name' => ['required', 'string'],
+             'state' => ['required', 'integer','in:0,1']
         ];
     }
 }
