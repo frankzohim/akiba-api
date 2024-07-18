@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('store_images', function (Blueprint $table) {
+        Schema::create('image_store', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Store::class)
             ->constrained()

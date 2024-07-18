@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('brand_images', function (Blueprint $table) {
+        Schema::create('brand_image', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Brand::class)
             ->constrained()
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('brand_images');
+        Schema::dropIfExists('brand_image');
     }
 };

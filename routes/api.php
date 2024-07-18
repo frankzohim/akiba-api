@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Auth\CreateUserController;
 use App\Http\Controllers\Api\User\CurrentUserController;
 use App\Http\Controllers\Api\User\LogoutController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +21,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+ 
 Route::post('/user', [CreateUserController::class, 'createUser']);
 Route::post('/login',[LoginController::class,'login']);
+
+
+
+//Display images
+Route::get('/categoryImage/{id}/{path}',[ProductCategoryController::class,'categoryImage']);
 
 // endpoint simple user
 
@@ -33,7 +44,19 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
     Route::post('/logout',[LogoutController::class,'logout']);
 
     //Brand resource
-     Route::apiResource('/brands', BrandController::class);
+    Route::apiResource('/brands', BrandController::class);
+    Route::post('/brand/image', [BrandController::class, 'uploadLogo']);
+
+    //Category resource
+    Route::apiResource('/categories', ProductCategoryController::class);
+    Route::post('/category/image', [ProductCategoryController::class, 'uploadLogo']);
+
+    //Store resource
+    Route::apiResource('/stores', StoreController::class);
+    Route::get('/stores/vendor/{userId}', [StoreController::class, 'vendorStores']);
+    Route::post('/store/image', [StoreController::class, 'uploadImages']);
+
+ 
 });
 
 

@@ -21,9 +21,11 @@ return new class extends Migration
             ->restrictOnDelete();
 
             $table->string('name');
+            $table->string('slug');
             $table->string('email')->nullable();
             $table->string('description');
             $table->string('phone_number');
+            $table->boolean('state');
             $table->timestamps();
         });
     }

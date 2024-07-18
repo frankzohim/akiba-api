@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use App\Models\Store;
 // use App\Models\Memberships_user;
 // use App\Models\Announcement;
 // use App\Models\Question;
@@ -79,6 +80,11 @@ class User extends Authenticatable implements Searchable
 
     public function role():HasOne{
         return $this->hasOne(Role::class);
+    }
+
+    public function stores():HasMany{
+        return $this->hasMany(Store::class)
+        ->with('images');
     }
 
     // public function questions():BelongsToMany{

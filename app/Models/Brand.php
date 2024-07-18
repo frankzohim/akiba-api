@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,4 +18,8 @@ class Brand extends Model
         'name',
         'state'
     ];
+
+    public function images():BelongsToMany{
+        return $this->belongsToMany(Image::class);
+    }
 }
