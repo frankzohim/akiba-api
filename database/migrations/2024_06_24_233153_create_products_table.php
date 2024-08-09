@@ -30,6 +30,7 @@ return new class extends Migration
             ->restrictOnUpdate()
             ->restrictOnDelete();
             $table->string('name');
+            $table->string('reference');
             $table->string('slug');
             $table->string('sku');
             $table->string('summary');
@@ -37,7 +38,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('sale_quantity');
             $table->string('stock_quantity');
-            $table->string('video');
+            $table->string('video')->nullable();
             $table->string('state');
             $table->timestamps();
         });

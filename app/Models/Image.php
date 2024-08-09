@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Brand;
 use App\Models\Store;
+use App\Models\Product;
 use App\Models\ProductCategory;
 
 class Image extends Model
@@ -22,5 +23,9 @@ class Image extends Model
 
     public function stores(){
         return $this->belongsToMany(Store::class);
+    }
+
+    public function products(){
+        return $this->belongsToMany(Product::class);
     }
 }

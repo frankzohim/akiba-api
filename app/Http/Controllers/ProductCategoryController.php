@@ -115,13 +115,18 @@ class ProductCategoryController extends Controller
     public function categoryImage($id, $path)
     {
         $imageDisplay = Image::find($path);
-        //return $imageDisplay;
-        // $image = \Illuminate\Support\Facades\Storage::get('app/public/categories/'.$id.'/'. $imageDisplay->path);
-        //  $image = \Illuminate\Support\Facades\Storage::get('app/public/categories/4/4_1720518057_1720518040_13966_e0d0264b-a798-4e2a-b689-36a95f60a38b.jpg');
-        // $i=ImageIntervention::make(storage_path("app/public/logo.png"));
-        // $i->resize(150, 150);
-        // $i->blur();
-        // $image->insert($i,'center',2,2);
         return response()->download(storage_path('app/public/categories/'.$id.'/'.$imageDisplay->path));
+    }
+
+    function slugify($string, $delimiter = '-') {
+        $oldLocale = setlocale(LC_ALL, '0');
+        setlocale(LC_ALL, 'en_US.UTF-8');
+        $clean = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
+        $clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
+        $clean = strtolower($clean);
+        $clean = preg_replace("/[\/_|+ -]+/", $delimiter, $clean);
+        $clean = trim($clean, $delimiter);
+        setlocale(LC_ALL, $oldLocale);
+        return $clean;
     }
 }
