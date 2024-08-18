@@ -35,6 +35,15 @@ Route::post('/login',[LoginController::class,'login']);
 Route::get('/categoryImage/{id}/{path}',[ProductCategoryController::class,'categoryImage']);
 Route::get('/productImage/{id}/{path}',[ProductController::class,'productImage']);
 
+//Listing on guest 
+
+Route::get('/categoriesList', [ProductCategoryController::class, 'list']);
+Route::get('/productsList', [ProductController::class, 'index']);
+
+//Retrieving a product
+Route::get('/getProduct/{product}', [ProductController::class, 'show']);
+// Route::apiResource('/categories', ProductCategoryController::class);
+
 // endpoint simple user
 
 Route::middleware('auth:api')->prefix('v1')->group(function(){

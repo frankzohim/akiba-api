@@ -19,6 +19,11 @@ class ProductCategoryController extends Controller
         return ProductCategoryResource::collection(ProductCategory::all());
     }
 
+    public function list()
+    {
+        return ProductCategoryResource::collection(ProductCategory::where('parent_id', NULL)->get());
+    }
+
     /**
      * Show the form for creating a new resource.
      */

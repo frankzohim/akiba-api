@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             // CreditSeeder::class,
             UserSeeder::class,
+            ProductCategorySeeder::class,
             // MemberShipSeeder::class,
             // AnnouncementCategorySeeder::class,
             // AnnouncementSeeder::class,

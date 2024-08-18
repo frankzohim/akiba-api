@@ -26,10 +26,6 @@ class ProductCategory extends Model
         'state'
     ];
 
-    public function images():BelongsToMany{
-        return $this->belongsToMany(Image::class);
-    }
-
      public function products():HasMany{
         return $this->hasMany(Product::class)
         ->with('images');

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\ProductCategory;
 
 class ProductCategoryResource extends JsonResource
 {
@@ -16,11 +17,11 @@ class ProductCategoryResource extends JsonResource
     {
         return [
             'id' => (string)$this->id,
-            'parent_id' => $this->parent_id,
+            'parent' => ProductCategory::find($this->parent_id),
             'name' => $this->name,
             'slug' => $this->slug,
             'state' => $this->state,
-            'images' => $this->images
+            'childreen' => ProductCategoryResource::collection(ProductCategory::where('parent_id', $this->id)->get())
         ];
     }
 }
